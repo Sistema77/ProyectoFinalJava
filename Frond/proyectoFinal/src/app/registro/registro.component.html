@@ -1,0 +1,92 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Registro</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="email" formControlName="email">
+            <mat-error *ngIf="addressForm.controls['email'].hasError('required')">
+              El Email es <strong>Obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="dni" formControlName="dni">
+            <mat-error *ngIf="addressForm.controls['dni'].hasError('required')">
+              El DNI es <strong>Obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Last name" formControlName="lastName">
+            <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
+              Apellido es <strong>Obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder=" name" formControlName="name">
+            <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
+              El nombre es <strong>Obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Introduzca Contraseña</mat-label>
+            <input matInput placeholder="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Select</mat-label>
+            <mat-select>
+              <mat-option value="1">Administrador</mat-option>
+              <mat-option value="2">Usuario</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder=" tlf" formControlName="tlf">
+            <mat-error *ngIf="addressForm.controls['tlf'].hasError('required')">
+              El telefono es <strong>Obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!--
+        <div class="col">
+          <button type="button" mat-raised-button (click)="fileInput.click()">Foto</button>
+          <input hidden (change)="onFileSelected($event)" #fileInput type="file">
+          <mat-error *ngIf="addressForm.controls['foto'].hasError('required')">
+           La Foto es <strong>Obligatorio</strong>
+          </mat-error>
+          <span class="file-name">{{selectedFile?.name}}</span>
+        </div>
+        -->
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Registrase</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
