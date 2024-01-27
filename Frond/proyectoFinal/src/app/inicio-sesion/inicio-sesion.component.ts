@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServicioInicioSesionService } from '../../Servicios/ServicioValidacion/servicio-inicio-sesion.service';
 
 
@@ -20,7 +20,7 @@ export class InicioSesionComponent {
   hasUnitNumber = false;
   hide = true;
 
-  constructor(private router: Router, private validaciondni: ServicioInicioSesionService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private validaciondni: ServicioInicioSesionService) {}
 
   onSubmit(): void {
     if (this.addressForm.valid) {
@@ -28,6 +28,10 @@ export class InicioSesionComponent {
     } else {
       alert('Error en el Formulario');
     }
+  }
+
+  mandarARegistro() { 
+    this.router.navigate(['registro'], { relativeTo: this.route.parent });
   }
 }
 

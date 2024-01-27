@@ -78,7 +78,7 @@
           <button type="button" mat-raised-button (click)="fileInput.click()">Foto</button>
           <input hidden (change)="onFileSelected($event)" #fileInput type="file">
           <mat-error *ngIf="addressForm.controls['foto'].hasError('required')">
-           La Foto es <strong>Obligatorio</strong>
+          La Foto es <strong>Obligatorio</strong>
           </mat-error>
           <span class="file-name">{{selectedFile?.name}}</span>
         </div>

@@ -7,7 +7,7 @@ import { Usuario } from '../../src/app/Models/usuario';
   providedIn: 'root'
 })
 export class RegistrarseService {
-  private apiUrl = ''; // Reemplaza por URL de la API
+  private apiUrl = 'localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 

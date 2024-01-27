@@ -6,17 +6,24 @@ import { SimuladorCreditoComponent } from './simulador-credito/simulador-credito
 import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
-  {path:'login', component:InicioSesionComponent, children:[
-    {path:'registro', component: RegistroComponent},
-    {path:'**', redirectTo: 'registro', pathMatch:'full'}
-  ]},
-  {path:'registro', component:RegistroComponent},
-  {path:'menu', component:BarraLateralComponeteComponent, children:[
-    {path:'simulador', component: SimuladorCreditoComponent},
-    {path:'**', redirectTo: 'simulador', pathMatch:'full'}
-  ]},
-  {path:'', redirectTo:'/login', pathMatch:'full'},
-  {path:'**', component:InicioSesionComponent}
+  {
+    path: 'login',
+    component: InicioSesionComponent,
+    children: [
+      { path: 'registro', component: RegistroComponent },
+      { path: '', redirectTo: 'registro', pathMatch: 'full' }
+    ]
+  },{ path: 'registro', component: RegistroComponent },
+  {
+    path: 'menu',
+    component: BarraLateralComponeteComponent,
+    children: [
+      { path: 'simulador', component: SimuladorCreditoComponent },
+      { path: '', redirectTo: 'simulador', pathMatch: 'full' }
+    ]
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', component: InicioSesionComponent }
   // Carga Perezosa //
 
   // {path:'menu', 

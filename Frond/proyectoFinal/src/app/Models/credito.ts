@@ -1,5 +1,4 @@
 export interface Credito {
-     id_Credito: number;
      tipoPrestamo: string;
      CantidadPrestamo: number;
      tasaInteres: number;
