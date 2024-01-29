@@ -7,12 +7,13 @@ import { Usuario } from '../../src/app/Models/usuario';
   providedIn: 'root'
 })
 export class RegistrarseService {
-  private apiUrl = 'localhost:8080/api';
+ 
+  private apiUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 
-  registrarUsuario(usuario: Usuario): Observable<any> {
-    const url = `${this.apiUrl}/usuarios/registrar`;
+  registrarUsuario(usuario: Usuario) {
+    const url = `${this.apiUrl}/registrar`;
     return this.http.post(url, usuario);
   }
 }

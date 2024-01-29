@@ -12,6 +12,15 @@ import { RegistrarseService } from '../../Servicios/registrarse.service';
 })
 export class RegistroComponent {
 
+  //Constructor
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private validaciondni: ServicioInicioSesionService,
+    private registrarseService: RegistrarseService
+  ) {}
+
+  // Nuevo Usuario
   nuevoUsuario: Usuario = {
     name: '',
     dni: '',
@@ -19,30 +28,25 @@ export class RegistroComponent {
     email: '',
     password: '',
     tlf: '',
-    foto: new Uint8Array(),
+    //foto: new Uint8Array(),
     tipoUsuario: ''
   };
 
+  // Verificación de Formulario
   addressForm = this.fb.group({
     dni: [null, [Validators.required], [ServicioInicioSesionService.ValidacionDNI()]],
     email: [null, [Validators.required, Validators.email]],
-    foto: [null, Validators.required], // Ajusta esto según tus necesidades
+    //foto: [null, Validators.required], // Ajusta esto según tus necesidades
     lastName: [null, Validators.required],
     name: [null, Validators.required],
     password: [null, [Validators.required, Validators.minLength(6)]],
-    tipoUsuario: [null, Validators.required], // Ajusta esto según tus necesidades
+    //tipoUsuario: [null, Validators.required], // Ajusta esto según tus necesidades
     tlf: [null, Validators.required],
   });
 
   hasUnitNumber = false;
   hide = true;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private validaciondni: ServicioInicioSesionService,
-    private registrarseService: RegistrarseService
-  ) {}
 
   onSubmit(): void {
     if (this.addressForm.valid) {
@@ -52,7 +56,7 @@ export class RegistroComponent {
       const name = this.addressForm.get('name')?.value as string | undefined;
       const password = this.addressForm.get('password')?.value as string | undefined;
       const tlf = this.addressForm.get('tlf')?.value as string | undefined;
-      const foto = this.addressForm.get('foto')?.value as Uint8Array | undefined; // Ajusta esto según tus necesidades
+      //const foto = this.addressForm.get('foto')?.value as Uint8Array | undefined; // Ajusta esto según tus necesidades
       const tipoUsuario = this.addressForm.get('tipoUsuario')?.value as string | undefined; // Ajusta esto según tus necesidades
 
       // Asegúrate de que los valores no son undefined antes de intentar asignarlos
@@ -64,7 +68,7 @@ export class RegistroComponent {
           name,
           password,
           tlf,
-          foto: foto || new Uint8Array(), // Si foto es undefined, asigna un nuevo Uint8Array()
+          //foto: foto || new Uint8Array(), // Si foto es undefined, asigna un nuevo Uint8Array()
           tipoUsuario: tipoUsuario || '' // Si tipoUsuario es undefined, asigna una cadena vacía
         };
 
@@ -80,7 +84,7 @@ export class RegistroComponent {
 
   registrarUsuario() {
     this.registrarseService.registrarUsuario(this.nuevoUsuario).subscribe(
-      response => {
+      (response: any) => {
         console.log('Usuario registrado exitosamente', response);
         
       },
