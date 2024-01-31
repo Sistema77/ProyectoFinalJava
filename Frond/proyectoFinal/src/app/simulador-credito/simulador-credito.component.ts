@@ -9,6 +9,9 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./simulador-credito.component.css']
 })
 export class SimuladorCreditoComponent {
+
+  usuarioLogin:boolean = true;
+
   private fb = inject(FormBuilder);
   addressForm = this.fb.group({
     company: null,

@@ -34,13 +34,12 @@ export class RegistroComponent {
 
   // Verificación de Formulario
   addressForm = this.fb.group({
-    dni: [null, [Validators.required], [ServicioInicioSesionService.ValidacionDNI()]],
+    dni: [null, [Validators.required, ServicioInicioSesionService.ValidacionDNI()]],
     email: [null, [Validators.required, Validators.email]],
-    //foto: [null, Validators.required], // Ajusta esto según tus necesidades
+    //foto: [null/*, [Validators.required, this.fileValidator]*/], // Ajusta esto según tus necesidades
     lastName: [null, Validators.required],
     name: [null, Validators.required],
     password: [null, [Validators.required, Validators.minLength(6)]],
-    //tipoUsuario: [null, Validators.required], // Ajusta esto según tus necesidades
     tlf: [null, Validators.required],
   });
 
@@ -48,6 +47,10 @@ export class RegistroComponent {
   hide = true;
 
 
+  /*onFileChange(event: any) {
+    const file = event.target.files[0];
+    this.addressForm.patchValue({ foto: file });
+  }*/
   onSubmit(): void {
     if (this.addressForm.valid) {
       const dni = this.addressForm.get('dni')?.value as string | undefined;
@@ -56,8 +59,7 @@ export class RegistroComponent {
       const name = this.addressForm.get('name')?.value as string | undefined;
       const password = this.addressForm.get('password')?.value as string | undefined;
       const tlf = this.addressForm.get('tlf')?.value as string | undefined;
-      //const foto = this.addressForm.get('foto')?.value as Uint8Array | undefined; // Ajusta esto según tus necesidades
-      const tipoUsuario = this.addressForm.get('tipoUsuario')?.value as string | undefined; // Ajusta esto según tus necesidades
+      const tipoUsuario = "usuario"
 
       // Asegúrate de que los valores no son undefined antes de intentar asignarlos
       if (dni !== undefined && email !== undefined && lastName !== undefined && name !== undefined && password !== undefined && tlf !== undefined) {
@@ -68,12 +70,14 @@ export class RegistroComponent {
           name,
           password,
           tlf,
-          //foto: foto || new Uint8Array(), // Si foto es undefined, asigna un nuevo Uint8Array()
-          tipoUsuario: tipoUsuario || '' // Si tipoUsuario es undefined, asigna una cadena vacía
+          //foto: new Uint8Array(), // Si foto es undefined, asigna un nuevo Uint8Array()
+          tipoUsuario // Si tipoUsuario es undefined, asigna una cadena vacía
         };
 
         // Llama al método para registrar el usuario
         this.registrarUsuario();
+
+        this.router.navigate(['/login']);
       } else {
         alert('Error en el Formulario');
       }
@@ -82,6 +86,7 @@ export class RegistroComponent {
     }
   }
 
+  //Registrar al usuario en la BD
   registrarUsuario() {
     this.registrarseService.registrarUsuario(this.nuevoUsuario).subscribe(
       (response: any) => {
@@ -92,5 +97,18 @@ export class RegistroComponent {
         console.error('Error al registrar usuario', error);
       }
     );
+  }
+
+  // Comprobar que la foto esta en el formato correcto 
+  fileValidator(control: any) {
+    const file = control.value;
+    if (file) {
+      const allowedExtensions = ['jpg', 'jpeg', 'png'];
+      const extension = file.name.split('.').pop().toLowerCase();
+      if (allowedExtensions.indexOf(extension) === -1) {
+        return { invalidFile: true };
+      }
+    }
+    return null;
   }
 }

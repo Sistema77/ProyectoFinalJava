@@ -53,15 +53,14 @@
             </button>
           </mat-form-field>
         </div>
-        <div class="col">
-          <mat-form-field>
-            <mat-label>Select</mat-label>
-            <mat-select>
-              <mat-option value="Administrador">Administrador</mat-option>
-              <mat-option value="Usuario">Usuario</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+        <!--<div class="col">
+          <div class="col">
+            <input #fileInput type="file" (change)="onFileChange($event)">
+            <mat-error *ngIf="addressForm.controls['foto'].hasError('required')">
+              La Foto es <strong>Obligatorio</strong>
+            </mat-error>
+          </div>
+        </div>-->
       </div>
 
       <div class="row">
@@ -73,16 +72,6 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <!--
-        <div class="col">
-          <button type="button" mat-raised-button (click)="fileInput.click()">Foto</button>
-          <input hidden (change)="onFileSelected($event)" #fileInput type="file">
-          <mat-error *ngIf="addressForm.controls['foto'].hasError('required')">
-          La Foto es <strong>Obligatorio</strong>
-          </mat-error>
-          <span class="file-name">{{selectedFile?.name}}</span>
-        </div>
-        -->
       </div>
     </mat-card-content>
     <mat-card-actions>
