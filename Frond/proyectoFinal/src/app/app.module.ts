@@ -19,6 +19,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SimuladorCreditoComponent } from './simulador-credito/simulador-credito.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HttpClientModule } from '@angular/common/http';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment.development';
+
+import {AngularFireModule } from '@angular/fire/compat';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth'
 
 @NgModule({
   declarations: [
@@ -42,7 +49,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatRadioModule,
     MatCardModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,12 +9,12 @@
 
           <div class="col">
             <mat-form-field class="full-width">
-              <input matInput placeholder="dni" formControlName="dni">
-              <mat-error *ngIf="addressForm.controls['dni'].hasError('required')">
-                DNI es <strong>Obligatorio</strong>
+              <input matInput placeholder="email" formControlName="email">
+              <mat-error *ngIf="addressForm.controls['email'].hasError('required')">
+                Email es <strong>Obligatorio</strong>
               </mat-error>
-              <mat-error *ngIf="addressForm.controls['dni'].hasError('invalidDni')">
-                El formato del DNI es inválido
+              <mat-error *ngIf="addressForm.controls['email'].hasError('invalidEmail')">
+                El formato del Email es inválido
               </mat-error>
             </mat-form-field>
           </div>
@@ -34,7 +34,7 @@
         </div>
       </mat-card-content>
       <mat-card-actions class="justify-content-end ">
-        <button class="m-1" mat-raised-button color="primary" type="submit">Iniciar</button>
+        <button class="m-1" mat-raised-button color="primary" type="submit" (click)="login()">Iniciar</button>
         <a class="" mat-raised-button color="primary" (click)="mandarARegistro()">Registrase</a>
       </mat-card-actions>
     </mat-card>

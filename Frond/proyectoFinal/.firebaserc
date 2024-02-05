@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "pruyectoangular": {
+      "hosting": {
+        "proyectoFinal": [
+          "pruyectoangular"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "pruyectoangular"
+  }
+}

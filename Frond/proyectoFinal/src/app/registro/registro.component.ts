@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ServicioInicioSesionService } from '../../Servicios/ServicioValidacion/servicio-inicio-sesion.service';
 import { Usuario } from '../Models/usuario';
 import { RegistrarseService } from '../../Servicios/registrarse.service';
+import { DataServiceTsService } from 'src/Servicios/data.service.ts.service'; 
 
 @Component({
   selector: 'app-registro',
@@ -11,14 +12,6 @@ import { RegistrarseService } from '../../Servicios/registrarse.service';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent {
-
-  //Constructor
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private validaciondni: ServicioInicioSesionService,
-    private registrarseService: RegistrarseService
-  ) {}
 
   // Nuevo Usuario
   nuevoUsuario: Usuario = {
@@ -28,29 +21,32 @@ export class RegistroComponent {
     email: '',
     password: '',
     tlf: '',
-    //foto: new Uint8Array(),
     tipoUsuario: ''
   };
 
-  // Verificación de Formulario
-  addressForm = this.fb.group({
-    dni: [null, [Validators.required, ServicioInicioSesionService.ValidacionDNI()]],
-    email: [null, [Validators.required, Validators.email]],
-    //foto: [null/*, [Validators.required, this.fileValidator]*/], // Ajusta esto según tus necesidades
-    lastName: [null, Validators.required],
-    name: [null, Validators.required],
-    password: [null, [Validators.required, Validators.minLength(6)]],
-    tlf: [null, Validators.required],
-  });
+    // Verificación de Formulario
+    addressForm = this.fb.group({
+      dni: [null, [Validators.required, ServicioInicioSesionService.ValidacionDNI()]],
+      email: [null, [Validators.required, Validators.email]],
+      //foto: [null/*, [Validators.required, this.fileValidator]*/], // Ajusta esto según tus necesidades
+      lastName: [null, Validators.required],
+      name: [null, Validators.required],
+      password: [null, [Validators.required, Validators.minLength(6)]],
+      tlf: [null, Validators.required],
+    });
 
-  hasUnitNumber = false;
-  hide = true;
+    hasUnitNumber = false;
+    hide = true;
 
+  //Constructor
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private validaciondni: ServicioInicioSesionService,
+    private registrarseService: RegistrarseService,
+    private service : DataServiceTsService
+  ) {}
 
-  /*onFileChange(event: any) {
-    const file = event.target.files[0];
-    this.addressForm.patchValue({ foto: file });
-  }*/
   onSubmit(): void {
     if (this.addressForm.valid) {
       const dni = this.addressForm.get('dni')?.value as string | undefined;
@@ -70,14 +66,20 @@ export class RegistroComponent {
           name,
           password,
           tlf,
-          //foto: new Uint8Array(), // Si foto es undefined, asigna un nuevo Uint8Array()
           tipoUsuario // Si tipoUsuario es undefined, asigna una cadena vacía
         };
 
         // Llama al método para registrar el usuario
-        this.registrarUsuario();
+        this.service.registrarUsuario(this.nuevoUsuario)
+        .then(() => {
+          console.log('ususarioa guardado');
+          this.router.navigate(['/login']);
+        })
+        .catch((error) => console.error(error));
 
-        this.router.navigate(['/login']);
+        //alert('Usuario Registrado Con exito');
+        
+        
       } else {
         alert('Error en el Formulario');
       }
@@ -87,7 +89,7 @@ export class RegistroComponent {
   }
 
   //Registrar al usuario en la BD
-  registrarUsuario() {
+  /*registrarUsuario() {
     this.registrarseService.registrarUsuario(this.nuevoUsuario).subscribe(
       (response: any) => {
         console.log('Usuario registrado exitosamente', response);
@@ -110,5 +112,5 @@ export class RegistroComponent {
       }
     }
     return null;
-  }
+  }*/
 }
