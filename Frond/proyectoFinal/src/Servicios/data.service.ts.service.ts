@@ -15,12 +15,26 @@ import 'firebase/compat/auth'
 })
 export class DataServiceTsService {
 
-  token?:string;
+  userData: any;
 
   constructor(
     private afs:Firestore, 
     private router:Router,
-    private afAuth: AngularFireAuth,) { }
+    private afAuth: AngularFireAuth,) 
+  {
+    this.afAuth.authState.subscribe(
+      (user) => {
+        if(user) {
+          this.userData = user;
+          localStorage.setItem('user', JSON.stringify(this.userData));
+          //JSON.parse(localStorage.getItem('user')!);
+        } else {
+          localStorage.setItem('user', 'null');
+          //JSON.parse(localStorage.getItem('user')!);
+        }
+      });
+
+  }
 
   registrarUsuario(usuario:Usuario){
     const colref = collection(this.afs, 'users');
@@ -57,18 +71,29 @@ export class DataServiceTsService {
   }
 
   iniciarSesion(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password).then(
-      response => {
-        firebase.auth().currentUser?.getIdToken().then(  
-          token => {
-            this.token = token;
-            this.router.navigate(['/']);
+    return this.afAuth
+      .signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.SetUserData(result.user);
+        this.afAuth.authState.subscribe((user) => {
+          if (user) {
+            this.router.navigate(['/menu']);
           }
-        )
-      }
-    )
+        });
+      })
+      .catch((error) => {
+        window.alert(error.message);
+      });
   }
   
+  SignOut() {
+    return this.afAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['sign-in']);
+    });
+  }
+
+
 
   eliminarUsuario(){}
 
@@ -76,7 +101,4 @@ export class DataServiceTsService {
 
   }
 
-  getIdToken(){
-    return this.token;
-  }
 }
