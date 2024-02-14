@@ -25,7 +25,10 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment.development';
 
 import {AngularFireModule } from '@angular/fire/compat';
-import {AngularFireAuthModule} from '@angular/fire/compat/auth'
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import { ListaComponent } from './lista/lista.component';
+import { UsuarioHijoComponent } from './lista/usuario-hijo/usuario-hijo.component';
+import { GraficaComponent } from './grafica/grafica.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth'
     BarraLateralComponeteComponent,
     InicioSesionComponent,
     SimuladorCreditoComponent,
-    RegistroComponent
+    RegistroComponent,
+    ListaComponent,
+    UsuarioHijoComponent,
+    GraficaComponent
   ],
   imports: [
     BrowserModule,

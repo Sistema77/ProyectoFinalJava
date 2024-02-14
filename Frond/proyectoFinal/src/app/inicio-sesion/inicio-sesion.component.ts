@@ -33,24 +33,14 @@ export class InicioSesionComponent {
   }
 
   login(){
-    let email: string;
-    let password: string;
-
-    // Verifica si los valores son nulos o indefinidos antes de asignarlos
-    if (this.addressForm.value.email !== null && this.addressForm.value.email !== undefined &&
-      this.addressForm.value.password !== null && this.addressForm.value.password !== undefined) {
+    var email: string = "";
+    var password: string = "";
       
-      email = this.addressForm.value.email;
-      password = this.addressForm.value.password;
+    email = this.addressForm.value.email!;
+    password = this.addressForm.value.password!;
 
-      console.log("email: " + email + " contraseña: " + password);
+    this.servicio.SignIn(email, password);
 
-      //this.servicio.SignIn(email, password);
-      
-      this.router.navigate(['/menu']);
-    }else{
-      console.error('usuario no encontrado');
-    }
   }
 
   mandarARegistro() { 
