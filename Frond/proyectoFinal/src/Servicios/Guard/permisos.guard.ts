@@ -15,7 +15,7 @@ export class permisosGuard implements CanActivate {
     if (isLoggedIn) {
       return true;
     } else {
-      this.router.navigate(['/login']); // Redirige al usuario a la página de inicio de sesión si no está autenticado
+      //this.router.navigate(['/login']); // Redirige al usuario a la página de inicio de sesión si no está autenticado
       return false;
     }
   }
