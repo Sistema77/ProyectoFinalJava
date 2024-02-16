@@ -15,6 +15,13 @@ import 'firebase/compat/auth'
 })
 export class DataServiceTsService {
 
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== null && user.emailVerified !== false ? true : false;
+  }
+  
+
+
   userData: any;
 
   constructor(
@@ -27,7 +34,7 @@ export class DataServiceTsService {
         if(user) {
           this.userData = user;
           localStorage.setItem('user', JSON.stringify(this.userData));
-          //JSON.parse(localStorage.getItem('user')!);
+          //JSON.parse(localStorage.getItem('user')!);  Para sacar informacion de Usuario
         } else {
           localStorage.setItem('user', 'null');
           //JSON.parse(localStorage.getItem('user')!);
@@ -54,23 +61,17 @@ export class DataServiceTsService {
 
   SetUserData(user: any) {
     console.log(user);
-    
-    /* const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/${user.uid}`
-    ); */
     const userData = {
       uid: user.uid,
       displayName: user.name + " " + user.lastName,
       email: user.email,
-      password: user.password
-    };
+      password: user.password,
+      emailVerified:true 
 
-    /* return userRef.set(userData, {
-      merge: true,
-    }); */
+    };
   }
 
-  iniciarSesion(email: string, password: string) {
+  SignIn(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
