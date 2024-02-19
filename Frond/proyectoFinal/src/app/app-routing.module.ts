@@ -6,6 +6,7 @@ import { SimuladorCreditoComponent } from './simulador-credito/simulador-credito
 import { RegistroComponent } from './registro/registro.component';
 import { ListaComponent } from './lista/lista.component';
 import { permisosGuard } from 'src/Servicios/Guard/permisos.guard';
+import { nuevoGuardianGuard } from './nuevo-guardian.guard';
 
 
 
@@ -20,7 +21,7 @@ const routes: Routes = [
     component: BarraLateralComponeteComponent,
     
     children: [
-      { path: 'simulador', component: SimuladorCreditoComponent, canActivate: [permisosGuard]},
+      { path: 'simulador', component: SimuladorCreditoComponent, canActivate: [nuevoGuardianGuard]},
       { path: '', redirectTo: 'simulador', pathMatch: 'full' }
     ]
   },

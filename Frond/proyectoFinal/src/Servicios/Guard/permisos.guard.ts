@@ -12,12 +12,18 @@ export class permisosGuard implements CanActivate {
     
     const isLoggedIn = this.sesion.isLoggedIn;
 
-    if (isLoggedIn) {
+    console.log("Entra en el Guardian");
+    if(!isLoggedIn){
+      console.log("Entra en if de Guardian");
+      this.router.navigate(['/login']);
+    }
+    return true;
+    /*if (isLoggedIn) {
       return true;
     } else {
-      //this.router.navigate(['/login']); // Redirige al usuario a la página de inicio de sesión si no está autenticado
+      this.router.navigate(['/login']); // Redirige al usuario a la página de inicio de sesión si no está autenticado
       return false;
-    }
+    }*/
   }
   
 }
