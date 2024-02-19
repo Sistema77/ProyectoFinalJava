@@ -40,7 +40,6 @@ export class DataServiceTsService {
           //JSON.parse(localStorage.getItem('user')!);
         }
       });
-
   }
 
   registrarUsuario(usuario:Usuario){

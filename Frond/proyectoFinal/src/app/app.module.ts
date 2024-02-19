@@ -28,7 +28,9 @@ import {AngularFireModule } from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { ListaComponent } from './lista/lista.component';
 import { UsuarioHijoComponent } from './lista/usuario-hijo/usuario-hijo.component';
-import { GraficaComponent } from './grafica/grafica.component'
+import { GraficaComponent } from './grafica/grafica.component';
+import { RegitroDatosComponent } from './regitro-datos/regitro-datos.component';
+import { RegistroDatosComponent } from './registro-datos/registro-datos.component'
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { GraficaComponent } from './grafica/grafica.component'
     RegistroComponent,
     ListaComponent,
     UsuarioHijoComponent,
-    GraficaComponent
+    GraficaComponent,
+    RegitroDatosComponent,
+    RegistroDatosComponent
   ],
   imports: [
     BrowserModule,

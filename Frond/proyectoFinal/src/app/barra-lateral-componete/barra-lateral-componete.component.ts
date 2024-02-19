@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { DataServiceTsService } from 'src/Servicios/data.service.ts.service';
 
+
 @Component({
   selector: 'app-barra-lateral-componete',
   templateUrl: './barra-lateral-componete.component.html',

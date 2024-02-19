@@ -5,7 +5,6 @@ import { BarraLateralComponeteComponent } from './barra-lateral-componete/barra-
 import { SimuladorCreditoComponent } from './simulador-credito/simulador-credito.component';
 import { RegistroComponent } from './registro/registro.component';
 import { ListaComponent } from './lista/lista.component';
-import { permisosGuard } from 'src/Servicios/Guard/permisos.guard';
 import { nuevoGuardianGuard } from './nuevo-guardian.guard';
 
 
