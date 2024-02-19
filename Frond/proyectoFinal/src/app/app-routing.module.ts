@@ -17,17 +17,18 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   {
     path: 'menu',
-    component: BarraLateralComponeteComponent,
+    component: BarraLateralComponeteComponent, canActivate: [nuevoGuardianGuard],
     
     children: [
-      { path: 'simulador', component: SimuladorCreditoComponent, canActivate: [nuevoGuardianGuard]},
+      { path: 'simulador', component: SimuladorCreditoComponent},
+     
+      { path: 'lista', component: ListaComponent},
+      { path: 'grafica', loadChildren: () => import('./grafica/grafica.module').then(m => m.GraficaModule) },
       { path: '', redirectTo: 'simulador', pathMatch: 'full' }
     ]
   },
-  // Carga Perezosa //
-  {path: 'grafica', loadChildren: () => import('./grafica/grafica.component').then(x => x.GraficaComponent)},
-  { path: 'lista', component: ListaComponent, },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  
   { path: '**', component: InicioSesionComponent }
 ];
 

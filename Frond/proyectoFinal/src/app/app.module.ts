@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,14 +22,11 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment.development';
-
 import {AngularFireModule } from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { ListaComponent } from './lista/lista.component';
 import { UsuarioHijoComponent } from './lista/usuario-hijo/usuario-hijo.component';
-import { GraficaComponent } from './grafica/grafica.component';
-import { RegitroDatosComponent } from './regitro-datos/regitro-datos.component';
-import { RegistroDatosComponent } from './registro-datos/registro-datos.component'
+import { RegistroDatosComponent } from './registro-datos/registro-datos.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +37,6 @@ import { RegistroDatosComponent } from './registro-datos/registro-datos.componen
     RegistroComponent,
     ListaComponent,
     UsuarioHijoComponent,
-    GraficaComponent,
-    RegitroDatosComponent,
     RegistroDatosComponent
   ],
   imports: [
