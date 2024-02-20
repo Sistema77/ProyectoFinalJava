@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-grafica',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./grafica.component.css']
 })
 export class GraficaComponent {
+  
 
 }

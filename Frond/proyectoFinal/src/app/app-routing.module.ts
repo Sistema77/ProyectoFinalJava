@@ -21,7 +21,6 @@ const routes: Routes = [
     
     children: [
       { path: 'simulador', component: SimuladorCreditoComponent},
-     
       { path: 'lista', component: ListaComponent},
       { path: 'grafica', loadChildren: () => import('./grafica/grafica.module').then(m => m.GraficaModule) },
       { path: '', redirectTo: 'simulador', pathMatch: 'full' }

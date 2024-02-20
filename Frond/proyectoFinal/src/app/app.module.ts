@@ -26,7 +26,6 @@ import {AngularFireModule } from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { ListaComponent } from './lista/lista.component';
 import { UsuarioHijoComponent } from './lista/usuario-hijo/usuario-hijo.component';
-import { RegistroDatosComponent } from './registro-datos/registro-datos.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { RegistroDatosComponent } from './registro-datos/registro-datos.componen
     RegistroComponent,
     ListaComponent,
     UsuarioHijoComponent,
-    RegistroDatosComponent
   ],
   imports: [
     BrowserModule,
