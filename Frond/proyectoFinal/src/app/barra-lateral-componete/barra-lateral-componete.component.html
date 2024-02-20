@@ -5,9 +5,9 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item class="link-success" routerLink="simulador">Simulacro Credito</a>
-      <a mat-list-item routerLink="historial">Historial</a>
-      <a mat-list-item >Cerrar Sesion</a>
+      <a mat-list-item class="link-success" [routerLink]="['/simulador']">Simulacro Credito</a>
+      <a mat-list-item [routerLink]="['/lista']">Lista</a>
+      <a mat-list-item (click)="cerrarSesion()">Cerrar Sesion</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

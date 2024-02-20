@@ -70,10 +70,11 @@ export class RegistroComponent {
         };
 
         // Llama al método para registrar el usuario
-        this.service.registrarUsuario(this.nuevoUsuario)
+        this.service.SignUp(this.nuevoUsuario)
         .then(() => {
           console.log('ususarioa guardado');
           this.router.navigate(['/login']);
+          alert("Registro exitoso");
         })
         .catch((error) => console.error(error));
 

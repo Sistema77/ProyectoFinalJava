@@ -4,6 +4,10 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { BarraLateralComponeteComponent } from './barra-lateral-componete/barra-lateral-componete.component';
 import { SimuladorCreditoComponent } from './simulador-credito/simulador-credito.component';
 import { RegistroComponent } from './registro/registro.component';
+import { ListaComponent } from './lista/lista.component';
+import { nuevoGuardianGuard } from './nuevo-guardian.guard';
+
+
 
 const routes: Routes = [
   {
@@ -13,19 +17,18 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   {
     path: 'menu',
-    component: BarraLateralComponeteComponent,
+    component: BarraLateralComponeteComponent, canActivate: [nuevoGuardianGuard],
+    
     children: [
-      { path: 'simulador', component: SimuladorCreditoComponent },
+      { path: 'simulador', component: SimuladorCreditoComponent},
+      { path: 'lista', component: ListaComponent},
+      { path: 'grafica', loadChildren: () => import('./grafica/grafica.module').then(m => m.GraficaModule) },
       { path: '', redirectTo: 'simulador', pathMatch: 'full' }
     ]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  
   { path: '**', component: InicioSesionComponent }
-  // Carga Perezosa //
-
-  // {path:'menu', 
-  //  loadChildren: () => import('./menu/minimenu.module').then(m => m.StudentModule)
-  // }
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 <div class="m-5 ">
-  <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <form [formGroup]="addressForm" novalidate>
     <mat-card class="shipping-card">
       <mat-card-header>
         <mat-card-title>Inicio Secion</mat-card-title>
@@ -34,7 +34,7 @@
         </div>
       </mat-card-content>
       <mat-card-actions class="justify-content-end ">
-        <button class="m-1" mat-raised-button color="primary" type="submit" (click)="login()">Iniciar</button>
+        <button class="m-1" mat-raised-button color="primary" type="submit" (click)="login()" [disabled]="!addressForm.valid">Iniciar</button>
         <a class="" mat-raised-button color="primary" (click)="mandarARegistro()">Registrase</a>
       </mat-card-actions>
     </mat-card>
