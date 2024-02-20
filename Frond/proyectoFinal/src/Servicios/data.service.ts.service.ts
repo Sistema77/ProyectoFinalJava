@@ -92,13 +92,4 @@ export class DataServiceTsService {
       this.router.navigate(['sign-in']);
     });
   }
-
-
-
-  eliminarUsuario(){}
-
-  ActualizarUsuario(){
-
-  }
-
 }
