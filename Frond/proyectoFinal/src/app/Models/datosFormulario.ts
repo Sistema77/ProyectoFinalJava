@@ -1,10 +1,10 @@
 export interface DatosFormularios{
-     company: String;
-     firstName: String;
-     lastName: String;
+     company: string;
+     firstName: string;
+     lastName: string;
      money: number;
-     city: String;
-     state: String;
+     city: string;
+     state?: string;
      postalCode: number;
 } 
 
