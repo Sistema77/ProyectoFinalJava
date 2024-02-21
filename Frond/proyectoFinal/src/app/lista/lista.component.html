@@ -8,10 +8,16 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let elemento of listaElementos | async" (click)="seleccionarElemento(elemento)">
-                  <td class="m-3 p-3 text-center">{{ elemento.company }}</td>
-                  <td class="m-3 p-3 text-center">{{ elemento.state }}</td>
-                  <td class="m-3 p-3 text-center">{{ elemento.money }} €</td>
+              <tr  *ngFor="let elemento of listaElementos | async" (click)="seleccionarElemento(elemento)">
+                    <td class="m-3 p-3 text-center" >
+                         <span class="btn">{{ elemento.company }}</span>
+                    </td>
+                    <td class="m-3 p-3 text-center">
+                         <span class="btn">{{ elemento.state }}</span>
+                    </td>
+                    <td class="m-3 p-3 text-center">
+                         <span class="btn">{{ elemento.money }} €</span>
+                    </td>
               </tr>
           </tbody>
      </table>

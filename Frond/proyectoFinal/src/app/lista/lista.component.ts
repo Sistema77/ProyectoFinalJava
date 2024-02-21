@@ -13,6 +13,7 @@ export class ListaComponent {
 
   listaElementos: Observable<any[]>;
   
+
   constructor(private lista:ListaUsuarioService,private db:BaseDatosCrudService){
     this.listaElementos = this.db.getDatos();
   }
