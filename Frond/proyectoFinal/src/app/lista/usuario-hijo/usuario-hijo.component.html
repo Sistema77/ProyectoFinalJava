@@ -1,4 +1,25 @@
-<div *ngIf="elementoSeleccionado">
-     <h2>{{ elementoSeleccionado.nombre }}</h2>
-     <p>{{ elementoSeleccionado.descripcion }}</p>
+<div class="card container mt-2" style="width: 18rem;" *ngIf="elementoSeleccionado">
+     <div class="card-header">
+          <h2>Compañia: <samp class="text-primary">{{ elementoSeleccionado.company }}</samp></h2>
+     </div>
+     <ul class="list-group list-group-flush">
+       <li class="list-group-item">
+          <b> Nombre:</b> {{ elementoSeleccionado.firstName }}
+       </li>
+       <li class="list-group-item">
+          <b>Apellido:</b> {{ elementoSeleccionado.lastName }}
+       </li>
+       <li class="list-group-item">
+          <b>Cantidad:</b> {{ elementoSeleccionado.money }} €
+       </li>
+       <li class="list-group-item">
+          <b>Ciudad:</b> {{ elementoSeleccionado.city }}
+       </li>
+       <li class="list-group-item">
+          <b>Ciudad:</b> {{ elementoSeleccionado.state }}
+       </li>
+       <li class="list-group-item">
+          <b>Codigo Postal:</b> {{ elementoSeleccionado.postalCode }}
+       </li>
+     </ul>
    </div>

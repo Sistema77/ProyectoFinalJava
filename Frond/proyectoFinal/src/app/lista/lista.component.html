@@ -1,7 +1,20 @@
-<ul>
-     <li *ngFor="let elemento of listaElementos | async" (click)="seleccionarElemento(elemento)">
-       {{ elemento.nombre }}
-     </li>
-</ul>
+<div class="container mt-2">
+     <table class="table bg-secondary" border="2" >
+          <thead>
+              <tr>
+                  <th class="m-3 p-3 text-center">Compañia</th>
+                  <th class="m-3 p-3 text-center">Ciudad</th>
+                  <th class="m-3 p-3 text-center">Cantidad</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let elemento of listaElementos | async" (click)="seleccionarElemento(elemento)">
+                  <td class="m-3 p-3 text-center">{{ elemento.company }}</td>
+                  <td class="m-3 p-3 text-center">{{ elemento.state }}</td>
+                  <td class="m-3 p-3 text-center">{{ elemento.money }} €</td>
+              </tr>
+          </tbody>
+     </table>
+</div>
 
 <app-usuario-hijo [elementoSeleccionado]="elementoSeleccionado"></app-usuario-hijo>
