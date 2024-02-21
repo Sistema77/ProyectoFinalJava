@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DataServiceTsService } from 'src/Servicios/data.service.ts.service';
 import { DatosFormularios } from '../Models/datosFormulario';
 import { BaseDatosCrudService } from 'src/Servicios/base-datos-crud.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class SimuladorCreditoComponent {
   postalCode: [null, Validators.required],
   });
 
-  constructor(private crudFire : BaseDatosCrudService, private fb : FormBuilder){}
+  constructor(private crudFire : BaseDatosCrudService,private router: Router, private fb : FormBuilder){}
   states = [
     {name: 'Almería', abbreviation: 'AL'},
     {name: 'Cádiz', abbreviation: 'CA'},
@@ -47,7 +48,7 @@ export class SimuladorCreditoComponent {
   
 
   onSubmit(): void {
-    alert('Credito enviado');
+    
     
     const company = this.addressForm.get('company')?.value as string | undefined;
     const firstName = this.addressForm.get('firstName')?.value as string | undefined;
@@ -72,8 +73,13 @@ export class SimuladorCreditoComponent {
         }
 
         this.crudFire.guardarDatos(this.datosFormulario)
-        .then(() => console.log('OK'))
-        .catch((error) => console.error(error));
+        .then(() => {
+          alert('Crédito enviado');
+          this.router.navigate(['/menu/grafica']); // FALLA //Redirige a otra página cuando la operación sea exitosa
+        })
+        .catch((error) => {
+          alert('Error');
+        });
     }
   }
 }

@@ -1,0 +1,7 @@
+<ul>
+     <li *ngFor="let elemento of listaElementos | async" (click)="seleccionarElemento(elemento)">
+       {{ elemento.nombre }}
+     </li>
+</ul>
+
+<app-usuario-hijo [elementoSeleccionado]="elementoSeleccionado"></app-usuario-hijo>

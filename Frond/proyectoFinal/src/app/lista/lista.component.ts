@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ListaUsuarioService } from 'src/Servicios/lista-usuario.service';
 import {MatTableModule} from '@angular/material/table';
+import { BaseDatosCrudService } from 'src/Servicios/base-datos-crud.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lista',
@@ -8,14 +10,17 @@ import {MatTableModule} from '@angular/material/table';
   styleUrls: ['./lista.component.css']
 })
 export class ListaComponent {
-  users: any[] | undefined;
 
-  constructor(private lista:ListaUsuarioService){}
+  listaElementos: Observable<any[]>;
+  
+  constructor(private lista:ListaUsuarioService,private db:BaseDatosCrudService){
+    this.listaElementos = this.db.getDatos();
+  }
 
-  ngOnInit(): void {
-    this.lista.getUsers().subscribe(users => {
-      this.users = users;
-    });
+  elementoSeleccionado: any;
+
+  seleccionarElemento(elemento: any) {
+    this.elementoSeleccionado = elemento;
   }
   
 }

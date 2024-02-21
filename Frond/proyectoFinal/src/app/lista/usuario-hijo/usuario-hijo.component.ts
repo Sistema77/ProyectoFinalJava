@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ListaUsuarioService } from 'src/Servicios/lista-usuario.service';
 
 @Component({
@@ -7,6 +7,6 @@ import { ListaUsuarioService } from 'src/Servicios/lista-usuario.service';
   styleUrls: ['./usuario-hijo.component.css']
 })
 export class UsuarioHijoComponent {
-  
+  @Input() elementoSeleccionado: any;
 
 }
